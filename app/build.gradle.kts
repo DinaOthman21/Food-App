@@ -67,6 +67,24 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     kapt (libs.hilt.compiler)
 
+    //Accompanist
+    implementation (libs.accompanist.systemuicontroller)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation (libs.retrofit2.kotlin.coroutines.adapter)
+
+
+    // Coroutine support for Retrofit
+    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.foundation)
+
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
 }
 
