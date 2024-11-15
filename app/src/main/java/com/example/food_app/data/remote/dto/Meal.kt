@@ -1,5 +1,7 @@
 package com.example.food_app.data.remote.dto
 
+import java.io.Serializable
+
 data class Meal(
     val dateModified: Any,
     val idMeal: String,
@@ -54,4 +56,4 @@ data class Meal(
     val strSource: Any,
     val strTags: String,
     val strYoutube: String
-)
+) : Serializable
