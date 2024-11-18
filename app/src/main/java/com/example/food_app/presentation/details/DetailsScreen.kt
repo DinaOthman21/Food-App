@@ -1,32 +1,32 @@
 package com.example.food_app.presentation.details
 
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.runtime.Composable
-import com.example.food_app.data.remote.dto.Meal
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.text.TextStyle
-import com.example.food_app.R
-import androidx.compose.material3.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.food_app.R
+import com.example.food_app.data.remote.dto.Meal
+
 @Composable
 fun DetailsScreen(
     meal: Meal,
-    onFavouriteClick: () -> Unit
+    onFavouriteClick: () -> Unit ,
+    onWatchClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -70,15 +70,14 @@ fun DetailsScreen(
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     ),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.padding(start = 2.dp)
                 )
 
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(35.dp))
 
                 Icon(
                     painter = painterResource(id = R.drawable.location),
-                    contentDescription = "Location Icon",
-                    modifier = Modifier.padding(end = 2.dp)
+                    contentDescription = "Location Icon"
                 )
 
                 Text(
@@ -86,20 +85,23 @@ fun DetailsScreen(
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
-                    ),
-                    modifier = Modifier.padding(start = 8.dp)
+                    )
                 )
+
+                Spacer(modifier = Modifier.weight(1f))
 
                 Box(
                     modifier = Modifier
-                        .padding(start = 8.dp)
+                        .padding(start = 8.dp, end = 8.dp)
                         .zIndex(0f)
                         .align(Alignment.CenterVertically)
                 ) {
                     Button(
-                        onClick = onFavouriteClick,
-                        modifier = Modifier,
-                        colors = ButtonDefaults.buttonColors()
+                        onClick = { onFavouriteClick() } ,
+                        colors = ButtonDefaults.buttonColors(
+                           containerColor = Color.Red ,
+                            contentColor = Color.White
+                        )
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.favorite),
@@ -118,7 +120,7 @@ fun DetailsScreen(
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
-                    fontSize = 16.sp
+                    fontSize = 18.sp
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -130,6 +132,39 @@ fun DetailsScreen(
             )
 
             Spacer(modifier = Modifier.height(24.dp))
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Button(
+                    onClick = {  onWatchClick()
+                       /* // Intent to open YouTube URL
+                        val context = LocalContext.current
+                        val intent = android.content.Intent(
+                            android.content.Intent.ACTION_VIEW,
+                            android.net.Uri.parse(meal.strYoutube)
+                        )
+                        context.startActivity(intent)*/
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Red
+                    )
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.youtube),
+                        contentDescription = "Watch on YouTube",
+                        tint = Color.White
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Watch on YouTube",
+                        color = Color.White
+                    )
+                }
+            }
         }
 
 
