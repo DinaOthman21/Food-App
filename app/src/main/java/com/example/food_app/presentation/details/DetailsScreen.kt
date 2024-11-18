@@ -20,12 +20,12 @@ import androidx.compose.ui.zIndex
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.food_app.R
-import com.example.food_app.data.remote.dto.Meal
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 
 @Composable
 fun DetailsScreen(
     meal: Meal,
-    onFavouriteClick: () -> Unit ,
+    onFavouriteClick: () -> Unit,
     onWatchClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()

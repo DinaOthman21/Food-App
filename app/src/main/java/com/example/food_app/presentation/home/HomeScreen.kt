@@ -30,12 +30,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.food_app.R
-import com.example.food_app.data.remote.dto.Meal
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 
 @Composable
 fun HomeScreen(
     state: HomeState,
-    onMealClick:(Meal) -> Unit ,
+    onMealClick:(Meal) -> Unit,
 ) {
 
     when {

@@ -6,7 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.food_app.data.remote.dto.Meal
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.details.DetailsScreen
 import com.example.food_app.presentation.home.HomeScreen
 import com.example.food_app.presentation.home.HomeViewModel

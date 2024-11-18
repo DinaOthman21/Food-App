@@ -1,7 +1,7 @@
 package com.example.food_app.data.repository
 
 import com.example.food_app.data.remote.ApiServices
-import com.example.food_app.data.remote.dto.MealList
+import com.example.food_app.data.remote.dto.randomMeal.MealList
 import com.example.food_app.domain.MealRepository
 
 class MealRepositoryImpl (

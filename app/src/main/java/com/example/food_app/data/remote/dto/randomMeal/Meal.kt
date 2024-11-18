@@ -1,4 +1,4 @@
-package com.example.food_app.data.remote.dto
+package com.example.food_app.data.remote.dto.randomMeal
 
 import java.io.Serializable
 

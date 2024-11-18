@@ -3,6 +3,7 @@ package com.example.food_app.di
 import com.example.food_app.data.remote.ApiServices
 import com.example.food_app.data.repository.MealRepositoryImpl
 import com.example.food_app.domain.MealRepository
+import com.example.food_app.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -29,7 +30,7 @@ object AppModule {
     fun provideApiServices(): ApiServices {
         return Retrofit
             .Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
