@@ -20,17 +20,42 @@ class HomeViewModel @Inject constructor(
 
     init {
         fetchRandomMeal()
+        getPopularItems()
     }
 
     private fun fetchRandomMeal() {
-        _mealState.value = HomeState(isLoading = true)
+        _mealState.value =  _mealState.value.copy(randomIsLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val mealList = mealRepository.getRandomMeal()
-                _mealState.value = HomeState(meal = mealList.meals.firstOrNull())
+                _mealState.value = _mealState.value.copy(
+                    randomMeal = mealList.meals.firstOrNull(),
+                    randomIsLoading = false
+                )
             } catch (e: Exception) {
                 e.printStackTrace()
-                _mealState.value = HomeState(error = "Failed to load meal: ${e.message}")
+                _mealState.value = _mealState.value.copy(
+                    randomError = "Failed to load meal: ${e.message}",
+                    randomIsLoading = false
+                )
+            }
+        }
+    }
+
+    private fun getPopularItems() {
+        _mealState.value = _mealState.value.copy(popularIsLoading = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val popularItems = mealRepository.getPopularItems("Seafood")
+                _mealState.value = HomeState(
+                    popularItems = popularItems,
+                    popularIsLoading = false
+                )
+            } catch (e: Exception) {
+                _mealState.value = HomeState(
+                    popularError = e.message ?: "An unknown error occurred",
+                    popularIsLoading = false
+                )
             }
         }
     }

@@ -11,10 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
 import com.example.food_app.presentation.common.PopularItemCard
+import com.example.food_app.presentation.home.HomeState
 
 @Composable
 fun PopularItemsScreen(
-    state : PopularState ,
+    state : HomeState ,
     onItemClick : (CategoryMeal) -> Unit
 ){
     Box (
@@ -32,7 +33,7 @@ fun PopularItemsScreen(
                 )
             }
         }
-        if(state.isLoading) CircularProgressIndicator()
-        if(state.error!= null) Text(state.error)
+        if(state.popularIsLoading) CircularProgressIndicator()
+        if(state.popularError!= null) Text(state.popularError)
     }
 }

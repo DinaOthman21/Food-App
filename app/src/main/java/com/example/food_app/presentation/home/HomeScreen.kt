@@ -33,24 +33,22 @@ import com.example.food_app.R
 import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
-import com.example.food_app.presentation.home.popularItems.PopularState
 
 @Composable
 fun HomeScreen(
     state: HomeState,
     onMealClick:(Meal) -> Unit,
-    popularState: PopularState,
     onPopularItemClick: (CategoryMeal)-> Unit
 ) {
 
     when {
-        state.isLoading -> {
+        state.randomIsLoading -> {
             Text(text = "Loading...")
         }
-        state.error != null -> {
-            Text(text = "Error: ${state.error}")
+        state.randomError != null -> {
+            Text(text = "Error: ${state.randomError}")
         }
-        state.meal != null -> {
+        state.randomMeal != null -> {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -94,7 +92,7 @@ fun HomeScreen(
                     Image(
                         painter = rememberAsyncImagePainter(
                             ImageRequest.Builder(LocalContext.current)
-                                .data(data = state.meal.strMealThumb).apply(block = fun ImageRequest.Builder.() {
+                                .data(data = state.randomMeal.strMealThumb).apply(block = fun ImageRequest.Builder.() {
                                     error(R.drawable.errorimage)
                                     placeholder(R.drawable.loadingimage)
                                 }).build()
@@ -104,7 +102,7 @@ fun HomeScreen(
                             .fillMaxWidth()
                             .height(200.dp)
                             .clickable {
-                                onMealClick(state.meal)
+                                onMealClick(state.randomMeal)
                             },
                         contentScale = ContentScale.Crop
                     )
@@ -120,7 +118,7 @@ fun HomeScreen(
                 )
 
                 PopularItemsScreen(
-                    state = popularState ,
+                    state = state ,
                     onItemClick = onPopularItemClick
                 )
             }
