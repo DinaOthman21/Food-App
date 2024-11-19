@@ -12,7 +12,7 @@ interface ApiServices {
    suspend fun getRandomMeal() : MealList
 
     @GET("filter.php?")
-    fun getPopularItems(
+    suspend fun getPopularItems(
         @Query("c") categoryName : String
     ) :CategoryList
 }

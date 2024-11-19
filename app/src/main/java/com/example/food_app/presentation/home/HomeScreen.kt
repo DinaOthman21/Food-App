@@ -30,12 +30,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.food_app.R
+import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
 import com.example.food_app.data.remote.dto.randomMeal.Meal
+import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
+import com.example.food_app.presentation.home.popularItems.PopularState
 
 @Composable
 fun HomeScreen(
     state: HomeState,
     onMealClick:(Meal) -> Unit,
+    popularState: PopularState,
+    onPopularItemClick: (CategoryMeal)-> Unit
 ) {
 
     when {
@@ -104,6 +109,20 @@ fun HomeScreen(
                         contentScale = ContentScale.Crop
                     )
                 }
+
+                Text(
+                    text = "Popular Items",
+                    fontFamily = FontFamily.Default,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 30.dp, top = 20.dp)
+                )
+
+                PopularItemsScreen(
+                    state = popularState ,
+                    onItemClick = onPopularItemClick
+                )
             }
         }
         else -> {

@@ -10,6 +10,7 @@ import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.details.DetailsScreen
 import com.example.food_app.presentation.home.HomeScreen
 import com.example.food_app.presentation.home.HomeViewModel
+import com.example.food_app.presentation.home.popularItems.PopularViewModel
 
 @Composable
 fun AppNavigation() {
@@ -23,12 +24,16 @@ fun AppNavigation() {
         composable(route = Screen.Home.route) {
             val homeViewModel : HomeViewModel = hiltViewModel()
             val state = homeViewModel.mealState.collectAsState().value
+            val popularViewModel : PopularViewModel = hiltViewModel()
+            val popularState = popularViewModel.popularState.collectAsState().value
             HomeScreen(
                 state ,
                 onMealClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("meal" , state.meal)
                     navController.navigate(route = Screen.Details.route)
-                }
+                } ,
+                popularState = popularState ,
+                onPopularItemClick = {}
             )
         }
 
