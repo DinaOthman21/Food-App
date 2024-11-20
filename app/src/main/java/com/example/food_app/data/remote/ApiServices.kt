@@ -15,4 +15,9 @@ interface ApiServices {
     suspend fun getPopularItems(
         @Query("c") categoryName : String
     ) :CategoryList
+
+    @GET("lookup.php?")
+    suspend fun getMealDetails(
+        @Query("i") id : String
+    ) : MealList
 }

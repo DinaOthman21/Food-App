@@ -23,13 +23,24 @@ fun AppNavigation() {
         composable(route = Screen.Home.route) {
             val homeViewModel : HomeViewModel = hiltViewModel()
             val state = homeViewModel.mealState.collectAsState().value
+            val navigateToDetails = homeViewModel.navigateToDetails.collectAsState().value
+            val mealDetailsState = homeViewModel.mealDetailsState.collectAsState().value
+
+            if (navigateToDetails && mealDetailsState != null) {
+                navController.currentBackStackEntry?.savedStateHandle?.set("meal", mealDetailsState)
+                navController.navigate(route = Screen.Details.route)
+                homeViewModel.resetNavigationState()
+            }
+
             HomeScreen(
                 state ,
                 onMealClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("meal" , state.randomMeal)
                     navController.navigate(route = Screen.Details.route)
                 } ,
-                onPopularItemClick = {}
+                onPopularItemClick = { categoryMeal ->
+                    homeViewModel.fetchMealDetails(categoryMeal.idMeal)
+                }
             )
         }
 

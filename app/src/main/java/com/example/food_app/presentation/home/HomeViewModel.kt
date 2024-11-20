@@ -2,6 +2,7 @@ package com.example.food_app.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.domain.MealRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,12 @@ class HomeViewModel @Inject constructor(
 
     private val _mealState = MutableStateFlow(HomeState())
     val mealState: StateFlow<HomeState> get() = _mealState
+
+     private val _mealDetailsState = MutableStateFlow<Meal?>(null)
+     val mealDetailsState: StateFlow<Meal?> get() = _mealDetailsState
+
+    private val _navigateToDetails = MutableStateFlow(false)
+    val navigateToDetails: StateFlow<Boolean> get() = _navigateToDetails
 
     init {
         fetchRandomMeal()
@@ -60,5 +67,22 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun fetchMealDetails(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                 val meal = mealRepository.getMealDetails(id)
+                    _mealDetailsState.value = meal
+                    _navigateToDetails.value = true
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _mealDetailsState.value = null
+                _mealState.value = _mealState.value.copy(randomError = "Failed to load meal details: ${e.message}")
+            }
+        }
+    }
+
+    fun resetNavigationState() {
+        _navigateToDetails.value = false
+    }
 
 }

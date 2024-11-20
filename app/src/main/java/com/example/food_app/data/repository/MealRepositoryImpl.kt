@@ -2,6 +2,7 @@ package com.example.food_app.data.repository
 
 import com.example.food_app.data.remote.ApiServices
 import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.data.remote.dto.randomMeal.MealList
 import com.example.food_app.domain.MealRepository
 
@@ -18,6 +19,10 @@ class MealRepositoryImpl (
         return api.getPopularItems(
             categoryName = categoryName
         ).meals
+    }
+
+    override suspend fun getMealDetails(id: String): Meal {
+        return api.getMealDetails(id).meals.first()
     }
 
 }
