@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.food_app.R
-import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
 
@@ -39,7 +39,7 @@ import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
 fun HomeScreen(
     state: HomeState,
     onMealClick:(Meal) -> Unit,
-    onPopularItemClick: (CategoryMeal)-> Unit
+    onPopularItemClick: (MealByCategory)-> Unit
 ) {
 
     when {

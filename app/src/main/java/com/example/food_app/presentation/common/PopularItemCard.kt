@@ -16,12 +16,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.food_app.R
-import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 
 @Composable
 fun PopularItemCard(
-    meal : CategoryMeal ,
-    onItemClick : (CategoryMeal)-> Unit
+    meal : MealByCategory,
+    onItemClick : (MealByCategory)-> Unit
 ){
     val context = LocalContext.current
         Row(

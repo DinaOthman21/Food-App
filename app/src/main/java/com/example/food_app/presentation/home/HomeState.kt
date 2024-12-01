@@ -1,6 +1,6 @@
 package com.example.food_app.presentation.home
 
-import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 
 data class HomeState(
@@ -12,6 +12,6 @@ data class HomeState(
 
     //Popular Items
     val popularIsLoading : Boolean = false,
-    val popularItems : List<CategoryMeal> =  emptyList(),
+    val popularItems : List<MealByCategory> =  emptyList(),
     val popularError: String? = null
 )

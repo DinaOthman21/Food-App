@@ -22,7 +22,7 @@ fun AppNavigation() {
 
         composable(route = Screen.Home.route) {
             val homeViewModel : HomeViewModel = hiltViewModel()
-            val state = homeViewModel.mealState.collectAsState().value
+            val state = homeViewModel.homeState.collectAsState().value
             val navigateToDetails = homeViewModel.navigateToDetails.collectAsState().value
             val mealDetailsState = homeViewModel.mealDetailsState.collectAsState().value
 

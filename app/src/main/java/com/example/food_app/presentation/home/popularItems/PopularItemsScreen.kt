@@ -11,14 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.food_app.data.remote.dto.popularMeal.CategoryMeal
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.presentation.common.PopularItemCard
 import com.example.food_app.presentation.home.HomeState
 
 @Composable
 fun PopularItemsScreen(
-    state : HomeState ,
-    onItemClick : (CategoryMeal) -> Unit ,
+    state : HomeState,
+    onItemClick : (MealByCategory) -> Unit,
     modifier: Modifier = Modifier
 ){
     Box (

@@ -1,6 +1,6 @@
 package com.example.food_app.data.remote.dto.popularMeal
 
-data class CategoryMeal(
+data class MealByCategory(
     val idMeal: String,
     val strMeal: String,
     val strMealThumb: String
