@@ -3,6 +3,7 @@ package com.example.food_app.presentation.home.popularItems
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -18,12 +19,11 @@ import com.example.food_app.presentation.home.HomeState
 @Composable
 fun PopularItemsScreen(
     state : HomeState,
-    onItemClick : (MealByCategory) -> Unit,
-    modifier: Modifier = Modifier
+    onItemClick : (MealByCategory) -> Unit
 ){
     Box (
         contentAlignment = Alignment.Center,
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.padding(start = 30.dp, end = 30.dp).fillMaxSize()
     )
     {
         LazyRow (

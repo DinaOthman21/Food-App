@@ -1,5 +1,6 @@
 package com.example.food_app.presentation.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food_app.data.remote.dto.randomMeal.Meal
@@ -28,6 +29,7 @@ class HomeViewModel @Inject constructor(
     init {
         fetchRandomMeal()
         getPopularItems()
+        getCategoriesList()
     }
 
     private fun fetchRandomMeal() {
@@ -83,6 +85,28 @@ class HomeViewModel @Inject constructor(
 
     fun resetNavigationState() {
         _navigateToDetails.value = false
+    }
+
+    private  fun getCategoriesList(){
+        _homeState.value = _homeState.value.copy(categoryIsLoading = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                Log.d("HomeViewModel", "Fetching categories list...")
+                val categoryList = mealRepository.getCategories()
+                Log.d("HomeViewModel", "Fetched categories: ${categoryList.categories}")
+                _homeState.value = _homeState.value.copy(
+                    categoriesList = categoryList.categories ,
+                    categoryIsLoading = false
+                )
+            } catch (e: Exception){
+                e.printStackTrace()
+                Log.e("HomeViewModel", "Error fetching categories: ${e.message}")
+                _homeState.value = _homeState.value.copy(
+                    categoryError = "Failed to load category: ${e.message}",
+                    categoryIsLoading = false
+                )
+            }
+        }
     }
 
 }

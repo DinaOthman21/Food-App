@@ -122,8 +122,7 @@ fun HomeScreen(
 
                 PopularItemsScreen(
                     state = state ,
-                    onItemClick = onPopularItemClick,
-                    modifier = Modifier.padding(start = 30.dp, end = 30.dp)
+                    onItemClick = onPopularItemClick
                 )
             }
         }
