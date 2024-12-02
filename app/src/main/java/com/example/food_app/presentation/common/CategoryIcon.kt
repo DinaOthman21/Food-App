@@ -2,7 +2,6 @@ package com.example.food_app.presentation.common
 
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -43,19 +42,18 @@ fun CategoryIcon(
             ),
             contentDescription = category.strCategory,
             modifier = Modifier
-                .size(65.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.secondaryContainer),
+                .size(100.dp)
+                .clip(RoundedCornerShape(12.dp)),
             contentScale = ContentScale.Fit
         )
 
-        Spacer(modifier = Modifier.height(6.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = category.strCategory,
             style = MaterialTheme.typography.bodyMedium.copy(
-                fontSize = 15.sp,
-                color = MaterialTheme.colorScheme.onBackground
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.primary
             ),
             maxLines = 1
         )
