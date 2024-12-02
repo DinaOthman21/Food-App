@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,32 +19,11 @@ import com.example.food_app.presentation.home.HomeState
 @Composable
 fun CategoryListScreen(
     state : HomeState
-){
-    if(state.categoryError!= null){
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(state.categoryError)
-        }
-    }
-    else if(state.categoriesList.isEmpty()) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "No categories available.")
-        }
-    }
-    if (state.categoryIsLoading) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
-    }
-    else {
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.padding(start = 30.dp, end = 30.dp).fillMaxSize()
+    ) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
             modifier = Modifier
