@@ -88,7 +88,7 @@ fun DetailsScreen(
                     text = "Category : " + meal.strCategory,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = MaterialTheme.colorScheme.tertiary
                     ),
                     modifier = Modifier.padding(start = 2.dp)
                 )
@@ -104,7 +104,7 @@ fun DetailsScreen(
                     text = "Area : " + meal.strArea,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = MaterialTheme.colorScheme.tertiary
                     )
                 )
 
@@ -119,7 +119,7 @@ fun DetailsScreen(
                     Button(
                         onClick = { onFavouriteClick() } ,
                         colors = ButtonDefaults.buttonColors(
-                           containerColor = Color.Red ,
+                           containerColor = MaterialTheme.colorScheme.primary ,
                             contentColor = Color.White
                         )
                     ) {
@@ -139,7 +139,7 @@ fun DetailsScreen(
                 text = "- Instructions:",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.tertiary,
                     fontSize = 18.sp
                 )
             )
@@ -147,7 +147,7 @@ fun DetailsScreen(
 
             Text(
                 text = meal.strInstructions,
-                color = Color.Black ,
+                color = MaterialTheme.colorScheme.tertiary ,
                 modifier = Modifier.padding(start = 10.dp)
             )
 
@@ -168,7 +168,7 @@ fun DetailsScreen(
                          context.startActivity(intent)
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Red
+                        containerColor = MaterialTheme.colorScheme.primary
                     )
                 ) {
                     Icon(
