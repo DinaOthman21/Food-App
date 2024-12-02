@@ -49,8 +49,7 @@ fun AppNavigation() {
                 ?.let { meal ->
                     DetailsScreen(
                         meal = meal ,
-                        onFavouriteClick = {} ,
-                        onWatchClick = {}
+                        onFavouriteClick = {}
                     )
                 }
         }

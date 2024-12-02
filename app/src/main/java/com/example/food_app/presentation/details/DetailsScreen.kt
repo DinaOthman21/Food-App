@@ -25,9 +25,9 @@ import com.example.food_app.data.remote.dto.randomMeal.Meal
 @Composable
 fun DetailsScreen(
     meal: Meal,
-    onFavouriteClick: () -> Unit,
-    onWatchClick: () -> Unit
+    onFavouriteClick: () -> Unit
 ) {
+    val context = LocalContext.current
     val scrollState = rememberScrollState()
 
         Column(
@@ -37,21 +37,41 @@ fun DetailsScreen(
                 .padding(bottom = 64.dp)
         )
         {
-            Image(
-                painter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(LocalContext.current)
-                        .data(data = meal.strMealThumb)
-                        .apply(block = fun ImageRequest.Builder.() {
-                            error(R.drawable.errorimage)
-                            placeholder(R.drawable.loadingimage)
-                        }).build()
-                ),
-                contentDescription = "Meal Image",
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(270.dp),
-                contentScale = ContentScale.Crop
-            )
+                    .height(270.dp)
+            ) {
+                Image(
+                    painter = rememberAsyncImagePainter(
+                        ImageRequest.Builder(LocalContext.current)
+                            .data(data = meal.strMealThumb)
+                            .apply {
+                                error(R.drawable.errorimage)
+                                placeholder(R.drawable.loadingimage)
+                            }.build()
+                    ),
+                    contentDescription = "Meal Image",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomStart)
+                        .padding(vertical = 8.dp, horizontal = 16.dp)
+                ) {
+                    Text(
+                        text = meal.strMeal,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp,
+                            color = Color.White
+                        )
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -140,14 +160,12 @@ fun DetailsScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Button(
-                    onClick = {  onWatchClick()
-                       /* // Intent to open YouTube URL
-                        val context = LocalContext.current
-                        val intent = android.content.Intent(
-                            android.content.Intent.ACTION_VIEW,
-                            android.net.Uri.parse(meal.strYoutube)
-                        )
-                        context.startActivity(intent)*/
+                    onClick = {
+                         val intent = android.content.Intent(
+                             android.content.Intent.ACTION_VIEW,
+                             android.net.Uri.parse(meal.strYoutube)
+                         )
+                         context.startActivity(intent)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Red
