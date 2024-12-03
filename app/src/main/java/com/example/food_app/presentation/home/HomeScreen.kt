@@ -6,9 +6,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.food_app.data.remote.dto.categories.Category
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
-import com.example.food_app.presentation.home.RandomMeal.HomeRandomMeal
 import com.example.food_app.presentation.home.categories.CategoryListScreen
 import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
 
@@ -17,7 +17,7 @@ fun HomeScreen(
     state: HomeState,
     onMealClick:(Meal) -> Unit,
     onPopularItemClick: (MealByCategory)-> Unit,
-    onCategoryClick: (String)-> Unit
+    onCategoryClick: (Category)-> Unit
 ) {
     LazyColumn (
         modifier = Modifier

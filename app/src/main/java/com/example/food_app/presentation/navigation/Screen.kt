@@ -5,4 +5,5 @@ sealed class Screen(val route :String){
     data object Favourite : Screen("FavouriteScreen")
     data object Categories : Screen("CategoriesScreen")
     data object Details : Screen("DetailsScreen")
+    data object MealsByCategories : Screen("MealsByCategories")
 }

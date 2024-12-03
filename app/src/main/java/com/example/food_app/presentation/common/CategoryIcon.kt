@@ -27,14 +27,14 @@ import com.example.food_app.data.remote.dto.categories.Category
 @Composable
 fun CategoryIcon(
     category : Category,
-    onCategoryClick: (String)-> Unit
+    onCategoryClick: (Category)-> Unit
 ) {
     Column(
         modifier = Modifier
             .wrapContentSize()
             .padding(8.dp)
             .clickable {
-                onCategoryClick(category.strCategory)
+                onCategoryClick(category)
             },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

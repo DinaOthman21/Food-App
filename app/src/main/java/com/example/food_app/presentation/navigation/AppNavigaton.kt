@@ -17,8 +17,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.food_app.R
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.categories.CategoriesScreen
+import com.example.food_app.presentation.mealByCategory.MealByCategoryScreen
 import com.example.food_app.presentation.details.DetailsScreen
 import com.example.food_app.presentation.favourite.FavouriteScreen
 import com.example.food_app.presentation.home.HomeScreen
@@ -89,13 +91,23 @@ fun AppNavigation() {
             composable(route = Screen.Home.route) {
                 val homeViewModel : HomeViewModel = hiltViewModel()
                 val state = homeViewModel.homeState.collectAsState().value
+
                 val navigateToDetails = homeViewModel.navigateToDetails.collectAsState().value
                 val mealDetailsState = homeViewModel.mealDetailsState.collectAsState().value
+
+                val navigateToCategories = homeViewModel.navigateToCategories.collectAsState().value
+                val categoriesList = homeViewModel.categoriesList.collectAsState().value
 
                 if (navigateToDetails && mealDetailsState != null) {
                     navController.currentBackStackEntry?.savedStateHandle?.set("meal", mealDetailsState)
                     navController.navigate(route = Screen.Details.route)
                     homeViewModel.resetNavigationState()
+                }
+
+                if(navigateToCategories && categoriesList.isNotEmpty()) {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("mealList", categoriesList)
+                    navController.navigate(route = Screen.MealsByCategories.route)
+                    homeViewModel.resetCategoryNavigationState()
                 }
 
                 HomeScreen(
@@ -107,7 +119,9 @@ fun AppNavigation() {
                     onPopularItemClick = { categoryMeal ->
                         homeViewModel.fetchMealDetails(categoryMeal.idMeal)
                     } ,
-                    onCategoryClick = {}
+                    onCategoryClick = { category ->
+                        homeViewModel.getMealsByCategory(category.strCategory)
+                    }
                 )
             }
 
@@ -129,6 +143,12 @@ fun AppNavigation() {
                 CategoriesScreen()
             }
 
+            composable(route = Screen.MealsByCategories.route){
+                navController.previousBackStackEntry?.savedStateHandle?.get<List<MealByCategory>>("mealList")
+                    ?.let { mealList ->
+                        MealByCategoryScreen(mealList = mealList)
+                    }
+            }
         }
     }
 

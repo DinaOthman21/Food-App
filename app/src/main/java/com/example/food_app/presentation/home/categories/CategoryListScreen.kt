@@ -18,13 +18,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.food_app.data.remote.dto.categories.Category
 import com.example.food_app.presentation.common.CategoryIcon
 import com.example.food_app.presentation.home.HomeState
 
 @Composable
 fun CategoryListScreen(
     state : HomeState,
-    onCategoryClick: (String)-> Unit
+    onCategoryClick: (Category)-> Unit
 ) {
     Text(
         text = "Categories",
@@ -53,7 +54,8 @@ fun CategoryListScreen(
                 onCategoryClick = { category->
                     onCategoryClick(category)
                     println("Clicked category: $category")
-                })
+                }
+            )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
