@@ -2,6 +2,7 @@ package com.example.food_app.presentation.common
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -25,12 +26,16 @@ import com.example.food_app.data.remote.dto.categories.Category
 
 @Composable
 fun CategoryIcon(
-    category : Category
+    category : Category,
+    onCategoryClick: (String)-> Unit
 ) {
     Column(
         modifier = Modifier
             .wrapContentSize()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {
+                onCategoryClick(category.strCategory)
+            },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 

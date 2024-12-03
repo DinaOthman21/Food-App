@@ -106,7 +106,8 @@ fun AppNavigation() {
                     } ,
                     onPopularItemClick = { categoryMeal ->
                         homeViewModel.fetchMealDetails(categoryMeal.idMeal)
-                    }
+                    } ,
+                    onCategoryClick = {}
                 )
             }
 

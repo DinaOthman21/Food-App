@@ -30,4 +30,10 @@ class MealRepositoryImpl (
         return api.getCategories()
     }
 
+    override suspend fun getMealsByCategory(categoryName: String): List<MealByCategory> {
+        return api.getMealsByCategory(
+            categoryName = categoryName
+        ).meals
+    }
+
 }

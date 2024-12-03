@@ -23,7 +23,8 @@ import com.example.food_app.presentation.home.HomeState
 
 @Composable
 fun CategoryListScreen(
-    state : HomeState
+    state : HomeState,
+    onCategoryClick: (String)-> Unit
 ) {
     Text(
         text = "Categories",
@@ -47,7 +48,12 @@ fun CategoryListScreen(
         contentPadding = PaddingValues(vertical = 8.dp, horizontal = 4.dp)
     ) {
         items(state.categoriesList.size) { index ->
-            CategoryIcon(state.categoriesList[index])
+            CategoryIcon(
+                category = state.categoriesList[index],
+                onCategoryClick = { category->
+                    onCategoryClick(category)
+                    println("Clicked category: $category")
+                })
             Spacer(modifier = Modifier.height(16.dp))
         }
     }

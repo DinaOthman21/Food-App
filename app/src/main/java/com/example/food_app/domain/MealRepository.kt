@@ -17,4 +17,8 @@ interface MealRepository {
     ): Meal
 
     suspend fun getCategories() : CategoryList
+
+    suspend fun getMealsByCategory(
+        categoryName : String
+    ) : List<MealByCategory>
 }

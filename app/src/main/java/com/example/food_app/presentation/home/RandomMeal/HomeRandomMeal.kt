@@ -1,4 +1,4 @@
-package com.example.food_app.presentation.home
+package com.example.food_app.presentation.home.RandomMeal
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -21,6 +21,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.food_app.R
 import com.example.food_app.data.remote.dto.randomMeal.Meal
+import com.example.food_app.presentation.home.HomeState
 
 @Composable
 fun HomeRandomMeal(

@@ -109,4 +109,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    private fun getMealsByCategory(category : String){
+
+    }
+
 }
