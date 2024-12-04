@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
+import com.example.food_app.presentation.common.MealByCategoryIcon
 
 @Composable
 fun MealByCategoryScreen(
@@ -14,7 +15,9 @@ fun MealByCategoryScreen(
     } else {
         LazyColumn {
             items(mealList.size) { category ->
-                Text(text = mealList[category].strMeal)
+                MealByCategoryIcon(
+                    category = mealList[category]
+                )
             }
         }
     }

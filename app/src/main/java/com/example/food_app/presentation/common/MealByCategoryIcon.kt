@@ -1,0 +1,48 @@
+package com.example.food_app.presentation.common
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
+import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
+
+@Composable
+fun MealByCategoryIcon(
+    category: MealByCategory
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Card(
+            modifier = Modifier
+                .size(65.dp)
+                .padding(5.dp),
+            shape = RoundedCornerShape(10.dp)
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(category.strMealThumb),
+                contentDescription = category.strMeal,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Fit
+            )
+        }
+
+        Text(
+            text = category.strMeal,
+            fontFamily = FontFamily.Default,
+            color = Color.Black,
+            modifier = Modifier.padding(top = 4.dp),
+            fontSize = 15.sp
+        )
+    }
+}
