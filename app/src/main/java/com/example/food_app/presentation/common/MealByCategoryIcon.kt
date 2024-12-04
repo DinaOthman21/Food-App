@@ -25,17 +25,19 @@ fun MealByCategoryIcon(
     ) {
         Card(
             modifier = Modifier
-                .size(65.dp)
-                .padding(5.dp),
-            shape = RoundedCornerShape(10.dp)
+                .size(200.dp)
+                .padding(8.dp),
+            shape = RoundedCornerShape(12.dp)
         ) {
             Image(
                 painter = rememberAsyncImagePainter(category.strMealThumb),
                 contentDescription = category.strMeal,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Crop
             )
         }
+
+        Spacer(modifier = Modifier.height(4.dp))
 
         Text(
             text = category.strMeal,
