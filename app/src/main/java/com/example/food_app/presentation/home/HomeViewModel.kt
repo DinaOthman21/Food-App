@@ -1,9 +1,7 @@
 package com.example.food_app.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.domain.MealRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,11 +25,6 @@ class HomeViewModel @Inject constructor(
     private val _navigateToDetails = MutableStateFlow(false)
     val navigateToDetails: StateFlow<Boolean> get() = _navigateToDetails
 
-    private val _categoriesList = MutableStateFlow<List<MealByCategory>>(emptyList())
-    val categoriesList: StateFlow<List<MealByCategory>> get() = _categoriesList
-
-    private val _navigateToCategories = MutableStateFlow(false)
-    val navigateToCategories: StateFlow<Boolean> get() = _navigateToCategories
 
     init {
         fetchRandomMeal()
@@ -114,23 +107,5 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getMealsByCategory(category: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            Log.d("HomeViewModel", "Fetching meals for category: $category")
-            try {
-                val categories = mealRepository.getMealsByCategory(categoryName = category)
-                _categoriesList.value = categories
-                _navigateToCategories.value = true
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Log.e("HomeViewModel", "Error fetching meals for category $category: ${e.message}")
-            }
-        }
-
-    }
-
-    fun resetCategoryNavigationState() {
-        _navigateToCategories.value = false
-    }
 
 }
