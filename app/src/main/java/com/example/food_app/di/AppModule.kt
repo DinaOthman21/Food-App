@@ -1,5 +1,9 @@
 package com.example.food_app.di
 
+import android.app.Application
+import androidx.room.Room
+import com.example.food_app.data.local.MealDao
+import com.example.food_app.data.local.MealDatabase
 import com.example.food_app.data.remote.ApiServices
 import com.example.food_app.data.repository.MealRepositoryImpl
 import com.example.food_app.domain.MealRepository
@@ -43,5 +47,24 @@ object AppModule {
     fun provideMealRepository(
         apiServices: ApiServices
     ) : MealRepository = MealRepositoryImpl(api = apiServices)
+
+    @Provides
+    @Singleton
+    fun provideMealDatabase(
+        application: Application
+    ) : MealDatabase{
+        return Room.databaseBuilder(
+           context =  application ,
+           klass =  MealDatabase::class.java,
+           name =  "meal_db"
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMealDao(
+        mealDatabase: MealDatabase
+    ):MealDao = mealDatabase.mealDao
+
 
 }

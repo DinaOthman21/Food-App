@@ -63,7 +63,7 @@ fun DetailsScreen(
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                 ) {
                     Text(
-                        text = meal.strMeal,
+                        text = meal.strMeal ?:"",
                         style = TextStyle(
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp,
@@ -146,7 +146,7 @@ fun DetailsScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = meal.strInstructions,
+                text = meal.strInstructions ?:"",
                 color = MaterialTheme.colorScheme.tertiary ,
                 modifier = Modifier.padding(start = 10.dp)
             )
