@@ -1,5 +1,6 @@
 package com.example.food_app.presentation.navigation
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -21,6 +22,7 @@ import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.categories.CategoriesScreen
 import com.example.food_app.presentation.mealByCategory.MealByCategoryScreen
 import com.example.food_app.presentation.details.DetailsScreen
+import com.example.food_app.presentation.details.DetailsViewModel
 import com.example.food_app.presentation.favourite.FavouriteScreen
 import com.example.food_app.presentation.home.HomeScreen
 import com.example.food_app.presentation.home.HomeViewModel
@@ -101,9 +103,6 @@ fun AppNavigation() {
                     homeViewModel.resetNavigationState()
                 }
 
-
-
-
                 HomeScreen(
                     state ,
                     onMealClick = {
@@ -121,11 +120,14 @@ fun AppNavigation() {
             }
 
             composable(route = Screen.Details.route) {
+                val detailsViewModel:DetailsViewModel = hiltViewModel()
                 navController.previousBackStackEntry?.savedStateHandle?.get<Meal?>("meal")
                     ?.let { meal ->
                         DetailsScreen(
                             meal = meal ,
-                            onFavouriteClick = {}
+                            onFavouriteClick = {
+                                detailsViewModel.onFavouriteClick(meal)
+                            }
                         )
                     }
             }

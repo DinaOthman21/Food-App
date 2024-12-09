@@ -45,8 +45,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMealRepository(
-        apiServices: ApiServices
-    ) : MealRepository = MealRepositoryImpl(api = apiServices)
+        apiServices: ApiServices ,
+        mealDatabase: MealDatabase
+    ) : MealRepository = MealRepositoryImpl(api = apiServices, mealDatabase = mealDatabase)
 
     @Provides
     @Singleton

@@ -92,6 +92,9 @@ dependencies {
     kapt (libs.androidx.room.compiler)
     implementation (libs.androidx.room.ktx)
 
+    //viewModel Scope
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
 }
 
 kapt{

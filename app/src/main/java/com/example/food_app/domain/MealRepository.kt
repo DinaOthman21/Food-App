@@ -21,4 +21,10 @@ interface MealRepository {
     suspend fun getMealsByCategory(
         categoryName : String
     ) : List<MealByCategory>
+
+    suspend fun upsertMeal(meal: Meal)
+
+    suspend fun deleteMeal(meal: Meal)
+
+    suspend fun getAllMeals(): List<Meal>
 }
