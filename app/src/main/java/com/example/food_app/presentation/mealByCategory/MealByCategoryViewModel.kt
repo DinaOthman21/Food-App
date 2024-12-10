@@ -1,6 +1,5 @@
 package com.example.food_app.presentation.mealByCategory
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
@@ -18,18 +17,16 @@ class MealByCategoryViewModel @Inject constructor(
 ) : ViewModel()  {
 
 
-    private val _categoriesList = MutableStateFlow<List<MealByCategory>>(emptyList())
-    val categoriesList: StateFlow<List<MealByCategory>> get() = _categoriesList
+    private val _mealsList = MutableStateFlow<List<MealByCategory>>(emptyList())
+    val mealsList: StateFlow<List<MealByCategory>> get() = _mealsList
 
     fun getMealsByCategory(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("HomeViewModel", "Fetching meals for category: $category")
             try {
-                val categories = mealRepository.getMealsByCategory(categoryName = category)
-                _categoriesList.value = categories
+                val meals = mealRepository.getMealsByCategory(categoryName = category)
+                _mealsList.value = meals
             } catch (e: Exception) {
                 e.printStackTrace()
-                Log.e("HomeViewModel", "Error fetching meals for category $category: ${e.message}")
             }
         }
 

@@ -154,7 +154,7 @@ fun AppNavigation() {
                     navController.previousBackStackEntry?.savedStateHandle?.get<String>("selectedCategory")
                 selectedCategory?.let { category ->
                     viewModel.getMealsByCategory(category)
-                    val meals = viewModel.categoriesList.collectAsState().value
+                    val meals = viewModel.mealsList.collectAsState().value
                     MealByCategoryScreen(mealList = meals)
                 }
             }
