@@ -1,6 +1,7 @@
 package com.example.food_app.presentation.common
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,10 +24,12 @@ import com.example.food_app.data.remote.dto.randomMeal.Meal
 
 @Composable
 fun FavouritesScreenIcon(
-    meal : Meal
+    meal : Meal,
+    onMealClick : (Meal)-> Unit
 ){
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.clickable { onMealClick(meal) }
     ) {
         Card(
             modifier = Modifier

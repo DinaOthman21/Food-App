@@ -135,7 +135,13 @@ fun AppNavigation() {
             composable(route = Screen.Favourite.route ){
                 val favouritesViewModel : FavouritesViewModel = hiltViewModel()
                 val state = favouritesViewModel.favouritesState.value
-                FavouriteScreen(state = state)
+                FavouriteScreen(
+                    state = state,
+                    onMealClick = { meal ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set("meal",meal)
+                        navController.navigate(route = Screen.Details.route)
+                    }
+                )
             }
 
             composable(route = Screen.Categories.route){

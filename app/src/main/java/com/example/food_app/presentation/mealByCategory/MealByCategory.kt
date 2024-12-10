@@ -12,7 +12,7 @@ fun MealByCategoryScreen(
     mealList : List<MealByCategory>
 ) {
     if (mealList.isEmpty()) {
-        Text(text = "No categories available")
+        Text(text = "No Meals available")
     } else {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2)

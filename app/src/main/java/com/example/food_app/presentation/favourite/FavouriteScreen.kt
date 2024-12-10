@@ -16,11 +16,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.presentation.common.FavouritesScreenIcon
 
 @Composable
 fun FavouriteScreen(
-    state : FavouritesScreenState
+    state : FavouritesScreenState ,
+    onMealClick : (Meal)-> Unit
 ) {
     Column(
         modifier = Modifier
@@ -50,8 +52,10 @@ fun FavouriteScreen(
             ) {
                 items(state.favouriteMeals.size) { position ->
                     FavouritesScreenIcon(
-                        meal = state.favouriteMeals[position]
+                        meal = state.favouriteMeals[position] ,
+                        onMealClick = onMealClick
                     )
+
                 }
             }
 
