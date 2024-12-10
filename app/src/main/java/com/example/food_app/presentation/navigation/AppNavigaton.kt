@@ -1,6 +1,5 @@
 package com.example.food_app.presentation.navigation
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -24,6 +23,7 @@ import com.example.food_app.presentation.mealByCategory.MealByCategoryScreen
 import com.example.food_app.presentation.details.DetailsScreen
 import com.example.food_app.presentation.details.DetailsViewModel
 import com.example.food_app.presentation.favourite.FavouriteScreen
+import com.example.food_app.presentation.favourite.FavouritesViewModel
 import com.example.food_app.presentation.home.HomeScreen
 import com.example.food_app.presentation.home.HomeViewModel
 import com.example.food_app.presentation.mealByCategory.MealByCategoryViewModel
@@ -133,7 +133,9 @@ fun AppNavigation() {
             }
 
             composable(route = Screen.Favourite.route ){
-                FavouriteScreen()
+                val favouritesViewModel : FavouritesViewModel = hiltViewModel()
+                val state = favouritesViewModel.favouritesState.value
+                FavouriteScreen(state = state)
             }
 
             composable(route = Screen.Categories.route){

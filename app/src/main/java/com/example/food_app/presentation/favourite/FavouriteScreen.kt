@@ -1,9 +1,58 @@
 package com.example.food_app.presentation.favourite
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.example.food_app.R
+import com.example.food_app.presentation.common.FavouritesScreenIcon
 
 @Composable
-fun FavouriteScreen() {
-    Text(text = "Favourite Screen")
+fun FavouriteScreen(
+    state : FavouritesScreenState
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .statusBarsPadding()
+            .padding(
+                top = 24.dp,
+                start = 24.dp,
+                end = 24.dp
+            )
+    ) {
+
+        Text(
+            text = "Favourite Meals",
+            style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
+            color = colorResource(
+                id = R.color.primary
+            )
+        )
+
+        Spacer(modifier = Modifier.height(18.dp))
+
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2)
+            ) {
+                items(state.favouriteMeals.size) { position ->
+                    FavouritesScreenIcon(
+                        meal = state.favouriteMeals[position]
+                    )
+                }
+            }
+
+
+    }
 }
