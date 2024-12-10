@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -81,7 +82,7 @@ fun AppNavigation() {
                 )
             }
 
-        }){
+        }){ it ->
         val bottomPadding = it.calculateBottomPadding()
 
         NavHost(
@@ -155,7 +156,21 @@ fun AppNavigation() {
                 selectedCategory?.let { category ->
                     viewModel.getMealsByCategory(category)
                     val meals = viewModel.mealsList.collectAsState().value
-                    MealByCategoryScreen(mealList = meals)
+                    MealByCategoryScreen(
+                        mealList = meals,
+                        onMealClick = {mealByCategory ->
+                            viewModel.fetchMealDetails(mealByCategory.idMeal)
+                        }
+                    )
+
+                    val meal by viewModel.meal.collectAsState()
+                    LaunchedEffect(meal) {
+                        meal?.let {
+                            navController.currentBackStackEntry?.savedStateHandle?.set("meal", it)
+                            navController.navigate(route = Screen.Details.route)
+                            viewModel.resetMealState()
+                        }
+                    }
                 }
             }
         }

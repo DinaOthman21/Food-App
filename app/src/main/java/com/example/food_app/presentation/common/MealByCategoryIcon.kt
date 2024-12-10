@@ -1,6 +1,7 @@
 package com.example.food_app.presentation.common
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -18,10 +19,12 @@ import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 
 @Composable
 fun MealByCategoryIcon(
-    category: MealByCategory
+    mealByCategory: MealByCategory,
+    onMealClick : (MealByCategory) -> Unit
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.clickable { onMealClick(mealByCategory) }
     ) {
         Card(
             modifier = Modifier
@@ -30,8 +33,8 @@ fun MealByCategoryIcon(
             shape = RoundedCornerShape(12.dp)
         ) {
             Image(
-                painter = rememberAsyncImagePainter(category.strMealThumb),
-                contentDescription = category.strMeal,
+                painter = rememberAsyncImagePainter(mealByCategory.strMealThumb),
+                contentDescription = mealByCategory.strMeal,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
@@ -40,7 +43,7 @@ fun MealByCategoryIcon(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = category.strMeal,
+            text = mealByCategory.strMeal,
             fontFamily = FontFamily.Default,
             color = Color.Black,
             modifier = Modifier.padding(top = 4.dp),

@@ -9,7 +9,8 @@ import com.example.food_app.presentation.common.MealByCategoryIcon
 
 @Composable
 fun MealByCategoryScreen(
-    mealList : List<MealByCategory>
+    mealList : List<MealByCategory> ,
+    onMealClick : (MealByCategory) -> Unit
 ) {
     if (mealList.isEmpty()) {
         Text(text = "No Meals available")
@@ -19,7 +20,8 @@ fun MealByCategoryScreen(
         ) {
             items(mealList.size) { category ->
                 MealByCategoryIcon(
-                    category = mealList[category]
+                    mealByCategory = mealList[category] ,
+                    onMealClick = onMealClick
                 )
             }
         }
