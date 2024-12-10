@@ -12,10 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.food_app.R
+import androidx.compose.ui.unit.sp
 import com.example.food_app.presentation.common.FavouritesScreenIcon
 
 @Composable
@@ -35,10 +35,12 @@ fun FavouriteScreen(
 
         Text(
             text = "Favourite Meals",
-            style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
-            color = colorResource(
-                id = R.color.primary
-            )
+            style = MaterialTheme.typography.displayMedium.copy(
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Default,
+                fontSize = 25.sp
+            ),
+            color = MaterialTheme.colorScheme.primary
         )
 
         Spacer(modifier = Modifier.height(18.dp))
