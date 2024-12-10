@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.food_app.data.remote.dto.categories.Category
-import com.example.food_app.presentation.common.CategoryIcon
+import com.example.food_app.presentation.common.HomeCategoryIcon
 import com.example.food_app.presentation.home.HomeState
 
 @Composable
-fun CategoryListScreen(
+fun HomeCategoryListScreen(
     state : HomeState,
     onCategoryClick: (Category)-> Unit
 ) {
@@ -49,7 +49,7 @@ fun CategoryListScreen(
         contentPadding = PaddingValues(vertical = 8.dp, horizontal = 4.dp)
     ) {
         items(state.categoriesList.size) { index ->
-            CategoryIcon(
+            HomeCategoryIcon(
                 category = state.categoriesList[index],
                 onCategoryClick = { category->
                     onCategoryClick(category)

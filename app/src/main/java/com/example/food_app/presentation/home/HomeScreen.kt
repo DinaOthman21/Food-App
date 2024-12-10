@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import com.example.food_app.data.remote.dto.categories.Category
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
-import com.example.food_app.presentation.home.categories.CategoryListScreen
-import com.example.food_app.presentation.home.popularItems.PopularItemsScreen
+import com.example.food_app.presentation.home.categories.HomeCategoryListScreen
+import com.example.food_app.presentation.home.popularItems.HomePopularItemsScreen
 
 @Composable
 fun HomeScreen(
@@ -58,7 +58,7 @@ fun HomeScreen(
                     Text(text = "Error: ${state.popularError}")
                 }
                 state.popularItems.isNotEmpty() -> {
-                    PopularItemsScreen(
+                    HomePopularItemsScreen(
                         state = state,
                         onItemClick = onPopularItemClick
                     )
@@ -79,7 +79,7 @@ fun HomeScreen(
                     Text(text = "Error: ${state.categoryError}")
                 }
                 state.categoriesList.isNotEmpty() -> {
-                    CategoryListScreen(
+                    HomeCategoryListScreen(
                         state = state,
                         onCategoryClick = onCategoryClick
                     )

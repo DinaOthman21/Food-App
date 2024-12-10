@@ -18,11 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
-import com.example.food_app.presentation.common.PopularItemCard
+import com.example.food_app.presentation.common.HomePopularItemCard
 import com.example.food_app.presentation.home.HomeState
 
 @Composable
-fun PopularItemsScreen(
+fun HomePopularItemsScreen(
     state : HomeState,
     onItemClick : (MealByCategory) -> Unit
 ){
@@ -47,7 +47,7 @@ fun PopularItemsScreen(
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(state.popularItems){ item ->
-                PopularItemCard(
+                HomePopularItemCard(
                     meal = item ,
                     onItemClick = { onItemClick(item)}
                 )

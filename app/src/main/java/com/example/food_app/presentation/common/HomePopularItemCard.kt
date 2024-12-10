@@ -19,7 +19,7 @@ import com.example.food_app.R
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 
 @Composable
-fun PopularItemCard(
+fun HomePopularItemCard(
     meal : MealByCategory,
     onItemClick : (MealByCategory)-> Unit
 ){
