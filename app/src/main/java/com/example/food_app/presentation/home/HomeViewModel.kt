@@ -19,11 +19,8 @@ class HomeViewModel @Inject constructor(
     private val _homeState = MutableStateFlow(HomeState())
     val homeState: StateFlow<HomeState> get() = _homeState
 
-    private val _mealDetailsState = MutableStateFlow<Meal?>(null)
-    val mealDetailsState: StateFlow<Meal?> get() = _mealDetailsState
-
-    private val _navigateToDetails = MutableStateFlow(false)
-    val navigateToDetails: StateFlow<Boolean> get() = _navigateToDetails
+    private val _meal = MutableStateFlow<Meal?>(null)
+    val meal: StateFlow<Meal?> get() = _meal
 
 
     init {
@@ -73,19 +70,16 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val meal = mealRepository.getMealDetails(id)
-                _mealDetailsState.value = meal
-                _navigateToDetails.value = true
+                _meal.value = meal
             } catch (e: Exception) {
                 e.printStackTrace()
-                _mealDetailsState.value = null
-                _homeState.value =
-                    _homeState.value.copy(randomError = "Failed to load meal details: ${e.message}")
+                _meal.value = null
             }
         }
     }
 
-    fun resetNavigationState() {
-        _navigateToDetails.value = false
+    fun resetMealState() {
+        _meal.value = null
     }
 
     private fun getCategoriesList() {

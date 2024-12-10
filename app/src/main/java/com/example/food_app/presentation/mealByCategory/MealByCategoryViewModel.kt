@@ -21,8 +21,6 @@ class MealByCategoryViewModel @Inject constructor(
     private val _mealsList = MutableStateFlow<List<MealByCategory>>(emptyList())
     val mealsList: StateFlow<List<MealByCategory>> get() = _mealsList
 
-    /*private val _meal = MutableStateFlow<Meal?>(null)
-    val meal: StateFlow<Meal?> get() = _meal*/
 
     private val _meal = MutableStateFlow<Meal?>(null)
     val meal: StateFlow<Meal?> get() = _meal

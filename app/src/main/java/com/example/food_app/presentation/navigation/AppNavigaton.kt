@@ -95,15 +95,6 @@ fun AppNavigation() {
                 val homeViewModel : HomeViewModel = hiltViewModel()
                 val state = homeViewModel.homeState.collectAsState().value
 
-                val navigateToDetails = homeViewModel.navigateToDetails.collectAsState().value
-                val mealDetailsState = homeViewModel.mealDetailsState.collectAsState().value
-
-                if (navigateToDetails && mealDetailsState != null) {
-                    navController.currentBackStackEntry?.savedStateHandle?.set("meal", mealDetailsState)
-                    navController.navigate(route = Screen.Details.route)
-                    homeViewModel.resetNavigationState()
-                }
-
                 HomeScreen(
                     state ,
                     onMealClick = {
@@ -118,6 +109,14 @@ fun AppNavigation() {
                         navController.navigate(Screen.MealsByCategories.route)
                     }
                 )
+                val meal = homeViewModel.meal.collectAsState().value
+                LaunchedEffect(meal) {
+                    meal?.let {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("meal", it)
+                        navController.navigate(route = Screen.Details.route)
+                        homeViewModel.resetMealState()
+                    }
+                }
             }
 
             composable(route = Screen.Details.route) {
@@ -151,9 +150,7 @@ fun AppNavigation() {
 
             composable(route = Screen.MealsByCategories.route){
                 val viewModel: MealByCategoryViewModel = hiltViewModel()
-                val selectedCategory =
-                    navController.previousBackStackEntry?.savedStateHandle?.get<String>("selectedCategory")
-                selectedCategory?.let { category ->
+                    navController.previousBackStackEntry?.savedStateHandle?.get<String>("selectedCategory")?.let { category ->
                     viewModel.getMealsByCategory(category)
                     val meals = viewModel.mealsList.collectAsState().value
                     MealByCategoryScreen(
