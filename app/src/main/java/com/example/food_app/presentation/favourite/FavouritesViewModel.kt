@@ -24,10 +24,12 @@ class FavouritesViewModel @Inject constructor(
 
     private fun getFavouritesMeals() {
         viewModelScope.launch(Dispatchers.IO) {
-                val meals = mealRepository.getAllMeals()
-                _favouritesSate.value = favouritesState.value.copy(
-                    favouriteMeals = meals
-                )
+            mealRepository.getAllMeals()
+                .collect { meals ->
+                    _favouritesSate.value = favouritesState.value.copy(
+                        favouriteMeals = meals
+                    )
+                }
         }
     }
 }

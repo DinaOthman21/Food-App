@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.food_app.data.remote.dto.randomMeal.Meal
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MealDao {
@@ -16,5 +17,8 @@ interface MealDao {
     suspend fun deleteMeal(meal:Meal)
 
     @Query("SELECT * FROM mealtable")
-    fun getAllMeals(): List<Meal>
+    fun getAllMeals(): Flow<List<Meal>>
+
+    @Query("SELECT * FROM mealtable WHERE idMeal=:mealId")
+    suspend fun getMealById(mealId : String) : Meal
 }

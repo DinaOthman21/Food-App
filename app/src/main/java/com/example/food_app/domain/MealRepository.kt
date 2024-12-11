@@ -4,6 +4,7 @@ import com.example.food_app.data.remote.dto.categories.CategoryList
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.data.remote.dto.randomMeal.MealList
+import kotlinx.coroutines.flow.Flow
 
 interface MealRepository {
     suspend fun getRandomMeal() : MealList
@@ -26,5 +27,7 @@ interface MealRepository {
 
     suspend fun deleteMeal(meal: Meal)
 
-    suspend fun getAllMeals(): List<Meal>
+    suspend fun getAllMeals(): Flow<List<Meal>>
+
+    suspend fun getMealFromDB(mealId : String) :Meal
 }

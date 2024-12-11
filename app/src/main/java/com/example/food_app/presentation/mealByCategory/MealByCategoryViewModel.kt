@@ -41,7 +41,7 @@ class MealByCategoryViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val meal = mealRepository.getMealDetails(id)
-                _meal.value = meal // Update StateFlow
+                _meal.value = meal
             } catch (e: Exception) {
                 e.printStackTrace()
             }

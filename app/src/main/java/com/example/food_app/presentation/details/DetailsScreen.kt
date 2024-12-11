@@ -1,6 +1,5 @@
 package com.example.food_app.presentation.details
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -118,10 +117,7 @@ fun DetailsScreen(
                         .align(Alignment.CenterVertically)
                 ) {
                     Button(
-                        onClick = {
-                            onFavouriteClick(meal)
-                            Toast.makeText(context,"Added to favourites",Toast.LENGTH_SHORT).show()
-                                  } ,
+                        onClick = { onFavouriteClick(meal) } ,
                         colors = ButtonDefaults.buttonColors(
                            containerColor = MaterialTheme.colorScheme.primary ,
                             contentColor = Color.White

@@ -7,6 +7,7 @@ import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 import com.example.food_app.data.remote.dto.randomMeal.MealList
 import com.example.food_app.domain.MealRepository
+import kotlinx.coroutines.flow.Flow
 
 
 class MealRepositoryImpl (
@@ -46,8 +47,12 @@ class MealRepositoryImpl (
         mealDatabase.mealDao.deleteMeal(meal = meal)
     }
 
-    override suspend fun getAllMeals(): List<Meal> {
+    override suspend fun getAllMeals(): Flow<List<Meal>> {
       return mealDatabase.mealDao.getAllMeals()
+    }
+
+    override suspend fun getMealFromDB(mealId: String): Meal {
+        return mealDatabase.mealDao.getMealById(mealId = mealId)
     }
 
 }
