@@ -82,7 +82,7 @@ class HomeViewModel @Inject constructor(
         _meal.value = null
     }
 
-    private fun getCategoriesList() {
+     fun getCategoriesList() {
         _homeState.value = _homeState.value.copy(categoryIsLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             try {

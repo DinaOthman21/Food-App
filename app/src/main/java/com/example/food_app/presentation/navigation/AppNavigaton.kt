@@ -153,7 +153,16 @@ fun AppNavigation() {
             }
 
             composable(route = Screen.Categories.route){
-                CategoriesScreen()
+                val homeViewModel : HomeViewModel = hiltViewModel()
+                homeViewModel.getCategoriesList()
+                val state = homeViewModel.homeState.collectAsState().value
+                CategoriesScreen(
+                    categoriesList = state.categoriesList ,
+                    onCategoryClick = { category ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set("selectedCategory", category.strCategory)
+                        navController.navigate(Screen.MealsByCategories.route)
+                    }
+                )
             }
 
             composable(route = Screen.MealsByCategories.route){

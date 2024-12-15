@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.food_app.data.remote.dto.categories.Category
-import com.example.food_app.presentation.common.HomeCategoryIcon
+import com.example.food_app.presentation.common.CategoryIcon
 import com.example.food_app.presentation.home.HomeState
 
 @Composable
@@ -49,15 +49,14 @@ fun HomeCategoryListScreen(
         contentPadding = PaddingValues(vertical = 8.dp, horizontal = 4.dp)
     ) {
         items(state.categoriesList.size) { index ->
-            HomeCategoryIcon(
+            CategoryIcon(
                 category = state.categoriesList[index],
                 onCategoryClick = { category->
                     onCategoryClick(category)
-                    println("Clicked category: $category")
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
-}
+ }
 }

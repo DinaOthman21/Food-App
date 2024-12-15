@@ -25,7 +25,7 @@ import com.example.food_app.R
 import com.example.food_app.data.remote.dto.categories.Category
 
 @Composable
-fun HomeCategoryIcon(
+fun CategoryIcon(
     category : Category,
     onCategoryClick: (Category)-> Unit
 ) {
