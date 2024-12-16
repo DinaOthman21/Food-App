@@ -55,4 +55,8 @@ class MealRepositoryImpl (
         return mealDatabase.mealDao.getMealById(mealId = mealId)
     }
 
+    override suspend fun searchMeals(searchQuery: String): List<Meal> {
+        return api.searchMeals(searchQuery = searchQuery).meals
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.food_app.presentation.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,7 +21,9 @@ import androidx.compose.ui.unit.sp
 import com.example.food_app.R
 
 @Composable
-fun HomeHeader(){
+fun HomeHeader(
+    onSearchClick:() -> Unit
+){
     Row(
         modifier = Modifier
             .padding(start = 30.dp, end = 20.dp, top = 10.dp)
@@ -39,7 +42,9 @@ fun HomeHeader(){
         Image(
             painter = painterResource(id = R.drawable.search),
             contentDescription = "Search Icon",
-            modifier = Modifier.size(40.dp) ,
+            modifier = Modifier.size(40.dp).clickable {
+                onSearchClick()
+            } ,
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
         )
     }

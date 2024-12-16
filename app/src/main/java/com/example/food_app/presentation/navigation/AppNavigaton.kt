@@ -32,6 +32,8 @@ import com.example.food_app.presentation.home.HomeViewModel
 import com.example.food_app.presentation.mealByCategory.MealByCategoryViewModel
 import com.example.food_app.presentation.navigation.component.BottomAppBar
 import com.example.food_app.presentation.navigation.component.BottomBarItem
+import com.example.food_app.presentation.search.SearchScreen
+import com.example.food_app.presentation.search.SearchViewModel
 
 @Composable
 fun AppNavigation() {
@@ -109,6 +111,9 @@ fun AppNavigation() {
                     onCategoryClick = { category ->
                         navController.currentBackStackEntry?.savedStateHandle?.set("selectedCategory", category.strCategory)
                         navController.navigate(Screen.MealsByCategories.route)
+                    } ,
+                    onSearchClick = {
+                        navController.navigate(Screen.Search.route)
                     }
                 )
                 val meal = homeViewModel.meal.collectAsState().value
@@ -186,6 +191,14 @@ fun AppNavigation() {
                         }
                     }
                 }
+            }
+
+            composable(route = Screen.Search.route){
+                val searchViewModel : SearchViewModel = hiltViewModel()
+                SearchScreen(
+                    searchViewModel = searchViewModel,
+                    onMealClick = {}
+                )
             }
         }
     }

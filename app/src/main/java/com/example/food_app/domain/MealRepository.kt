@@ -30,4 +30,6 @@ interface MealRepository {
     suspend fun getAllMeals(): Flow<List<Meal>>
 
     suspend fun getMealFromDB(mealId : String) :Meal
+
+    suspend fun searchMeals(searchQuery : String) : List<Meal>
 }

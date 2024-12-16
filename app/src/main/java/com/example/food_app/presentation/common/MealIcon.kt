@@ -23,7 +23,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.food_app.data.remote.dto.randomMeal.Meal
 
 @Composable
-fun FavouritesScreenIcon(
+fun MealIcon(
     meal : Meal,
     onMealClick : (Meal)-> Unit
 ){

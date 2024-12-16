@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.food_app.data.remote.dto.randomMeal.Meal
-import com.example.food_app.presentation.common.FavouritesScreenIcon
+import com.example.food_app.presentation.common.MealIcon
 
 @Composable
 fun FavouriteScreen(
@@ -51,7 +51,7 @@ fun FavouriteScreen(
                 columns = GridCells.Fixed(2)
             ) {
                 items(state.favouriteMeals.size) { position ->
-                    FavouritesScreenIcon(
+                    MealIcon(
                         meal = state.favouriteMeals[position] ,
                         onMealClick = onMealClick
                     )

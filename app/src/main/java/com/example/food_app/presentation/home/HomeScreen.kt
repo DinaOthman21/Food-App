@@ -17,17 +17,20 @@ fun HomeScreen(
     state: HomeState,
     onMealClick:(Meal) -> Unit,
     onPopularItemClick: (MealByCategory)-> Unit,
-    onCategoryClick: (Category)-> Unit
+    onCategoryClick: (Category)-> Unit ,
+    onSearchClick:() -> Unit
 ) {
     LazyColumn (
         modifier = Modifier
             .fillMaxSize()
     ) {
+
         item {
-            HomeHeader()
+            HomeHeader(
+                onSearchClick = onSearchClick
+            )
         }
 
-        // random Meal
         item {
             when {
                 state.randomIsLoading -> {
@@ -48,7 +51,6 @@ fun HomeScreen(
             }
         }
 
-        // popular items
         item {
             when {
                 state.popularIsLoading -> {
@@ -69,7 +71,6 @@ fun HomeScreen(
             }
         }
 
-        //categories
         item {
             when {
                 state.categoryIsLoading -> {
