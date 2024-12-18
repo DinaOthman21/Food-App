@@ -97,7 +97,7 @@ fun AppNavigation() {
 
             composable(route = Screen.Home.route) {
                 val homeViewModel : HomeViewModel = hiltViewModel()
-                val state = homeViewModel.homeState.collectAsState().value
+                val state by homeViewModel.homeState.collectAsState()
 
                 HomeScreen(
                     state ,

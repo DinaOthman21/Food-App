@@ -36,7 +36,8 @@ class HomeViewModel @Inject constructor(
                 val mealList = mealRepository.getRandomMeal()
                 _homeState.value = _homeState.value.copy(
                     randomMeal = mealList.meals.firstOrNull(),
-                    randomIsLoading = false
+                    randomIsLoading = false,
+                    randomError = null
                 )
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -53,13 +54,15 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val popularItems = mealRepository.getPopularItems("Seafood")
-                _homeState.value = HomeState(
+                _homeState.value = _homeState.value.copy(
                     popularItems = popularItems,
-                    popularIsLoading = false
+                    popularIsLoading = false,
+                    popularError = null
                 )
             } catch (e: Exception) {
-                _homeState.value = HomeState(
-                    popularError = e.message ?: "An unknown error occurred",
+                e.printStackTrace()
+                _homeState.value = _homeState.value.copy(
+                    popularError = "Failed to load popular items: ${e.message}",
                     popularIsLoading = false
                 )
             }
@@ -82,24 +85,25 @@ class HomeViewModel @Inject constructor(
         _meal.value = null
     }
 
-     fun getCategoriesList() {
+    fun getCategoriesList() {
         _homeState.value = _homeState.value.copy(categoryIsLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val categoryList = mealRepository.getCategories()
                 _homeState.value = _homeState.value.copy(
                     categoriesList = categoryList.categories,
-                    categoryIsLoading = false
+                    categoryIsLoading = false,
+                    categoryError = null
                 )
             } catch (e: Exception) {
                 e.printStackTrace()
                 _homeState.value = _homeState.value.copy(
-                    categoryError = "Failed to load category: ${e.message}",
+                    categoryError = "Failed to load categories: ${e.message}",
                     categoryIsLoading = false
                 )
             }
         }
     }
-
-
 }
+
+
