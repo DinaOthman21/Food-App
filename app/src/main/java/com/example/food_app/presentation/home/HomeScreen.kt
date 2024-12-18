@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import com.example.food_app.data.remote.dto.categories.Category
 import com.example.food_app.data.remote.dto.popularMeal.MealByCategory
 import com.example.food_app.data.remote.dto.randomMeal.Meal
+import com.example.food_app.presentation.common.ErrorScreen
 import com.example.food_app.presentation.home.categories.HomeCategoryListScreen
 import com.example.food_app.presentation.home.popularItems.HomePopularItemsScreen
 
@@ -37,7 +38,8 @@ fun HomeScreen(
                     Text(text = "Random Meal Is Loading...")
                 }
                 state.randomError != null -> {
-                    Text(text = "Error: ${state.randomError}")
+                    ErrorScreen(text = "Connect to the Internet")
+                    //Text(text = "Error: ${state.randomError}")
                 }
                 state.randomMeal != null -> {
                     HomeRandomMeal(
@@ -56,17 +58,11 @@ fun HomeScreen(
                 state.popularIsLoading -> {
                     Text(text = "Popular Items IsLoading...")
                 }
-                state.popularError != null -> {
-                    Text(text = "Error: ${state.popularError}")
-                }
                 state.popularItems.isNotEmpty() -> {
                     HomePopularItemsScreen(
                         state = state,
                         onItemClick = onPopularItemClick
                     )
-                }
-                else -> {
-                    Text(text = "No popular items available.")
                 }
             }
         }
@@ -76,17 +72,11 @@ fun HomeScreen(
                 state.categoryIsLoading -> {
                     Text(text = "Categories Is Loading...")
                 }
-                state.categoryError != null -> {
-                    Text(text = "Error: ${state.categoryError}")
-                }
                 state.categoriesList.isNotEmpty() -> {
                     HomeCategoryListScreen(
                         state = state,
                         onCategoryClick = onCategoryClick
                     )
-                }
-                else -> {
-                    Text(text = "No categories available.")
                 }
             }
         }
