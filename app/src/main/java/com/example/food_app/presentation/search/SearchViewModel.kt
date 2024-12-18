@@ -24,8 +24,17 @@ class SearchViewModel @Inject constructor(
 
     fun searchMeals(){
         viewModelScope.launch(Dispatchers.IO) {
+            if (state.value.searchQuery.isBlank()) {
+                _state.value = _state.value.copy(
+                    meals = emptyList(),
+                    searchError = "Please enter a search query.",
+                    isLoading = false
+                )
+                return@launch
+            }
             _state.value = _state.value.copy(
-                isLoading = true
+                isLoading = true,
+                searchError = null
             )
             try {
                 val meals = mealRepository.searchMeals(searchQuery = state.value.searchQuery)
@@ -34,7 +43,6 @@ class SearchViewModel @Inject constructor(
                     meals = meals
                 )
             } catch (e: Exception) {
-                println("Error: ${e.message}")
                 e.printStackTrace()
                 _state.value = _state.value.copy(
                     isLoading = false ,

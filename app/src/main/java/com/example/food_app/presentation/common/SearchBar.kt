@@ -21,7 +21,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.material3.TextField
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.food_app.R
 
@@ -42,14 +41,19 @@ fun SearchBar(
         TextField(
             modifier = Modifier
                 .weight(1f)
-                .height(45.dp),
+                .height(55.dp),
             value = searchQuery,
             onValueChange = onSearchQueryChange,
-            placeholder = { Text("Search") },
+            placeholder = {
+                Text(
+                    "Search" ,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray
+                ) },
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White,
+                unfocusedContainerColor = Color(0xFFD5D5D5),
                 cursorColor = Color.Black,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
@@ -65,7 +69,7 @@ fun SearchBar(
         IconButton(
             onClick = onSearch,
             modifier = Modifier
-                .size(35.dp)
+                .size(40.dp)
                 .padding(start = 5.dp)
         ) {
             Icon(
@@ -77,13 +81,4 @@ fun SearchBar(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SearchBarPreview() {
-    SearchBar(
-        searchQuery = "",
-        onSearchQueryChange = {},
-        onSearch = {}
-    )
-}
 

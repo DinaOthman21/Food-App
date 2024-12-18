@@ -197,7 +197,10 @@ fun AppNavigation() {
                 val searchViewModel : SearchViewModel = hiltViewModel()
                 SearchScreen(
                     searchViewModel = searchViewModel,
-                    onMealClick = {}
+                    onMealClick = {meal->
+                        navController.currentBackStackEntry?.savedStateHandle?.set("meal",meal)
+                        navController.navigate(route = Screen.Details.route)
+                    }
                 )
             }
         }
