@@ -95,6 +95,9 @@ dependencies {
     //viewModel Scope
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    // lottie animation
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
+
 }
 
 kapt{

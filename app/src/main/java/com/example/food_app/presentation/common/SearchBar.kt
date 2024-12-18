@@ -69,7 +69,7 @@ fun SearchBar(
         IconButton(
             onClick = onSearch,
             modifier = Modifier
-                .size(40.dp)
+                .size(50.dp)
                 .padding(start = 5.dp)
         ) {
             Icon(
