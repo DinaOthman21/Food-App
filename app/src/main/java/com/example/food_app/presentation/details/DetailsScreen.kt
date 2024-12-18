@@ -25,7 +25,8 @@ import com.example.food_app.data.remote.dto.randomMeal.Meal
 @Composable
 fun DetailsScreen(
     meal: Meal,
-    onFavouriteClick: (Meal) -> Unit
+    onFavouriteClick: (Meal) -> Unit ,
+    onBackClick: () -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
@@ -55,6 +56,19 @@ fun DetailsScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
+                IconButton(
+                    onClick = { onBackClick() },
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(16.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_arrow_back_24),
+                        contentDescription = "Back",
+                        tint = Color.White ,
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
 
                 Box(
                     modifier = Modifier

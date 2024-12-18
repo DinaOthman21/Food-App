@@ -103,7 +103,9 @@ fun AppNavigation() {
                     state ,
                     onMealClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set("meal" , state.randomMeal)
-                        navController.navigate(route = Screen.Details.route)
+                        navController.navigate(route = Screen.Details.route){
+                            launchSingleTop = true
+                        }
                     } ,
                     onPopularItemClick = { categoryMeal ->
                         homeViewModel.fetchMealDetails(categoryMeal.idMeal)
@@ -120,7 +122,9 @@ fun AppNavigation() {
                 LaunchedEffect(meal) {
                     meal?.let {
                         navController.currentBackStackEntry?.savedStateHandle?.set("meal", it)
-                        navController.navigate(route = Screen.Details.route)
+                        navController.navigate(route = Screen.Details.route){
+                            launchSingleTop = true
+                        }
                         homeViewModel.resetMealState()
                     }
                 }
@@ -140,6 +144,10 @@ fun AppNavigation() {
                             meal = meal ,
                             onFavouriteClick = {
                                 detailsViewModel.onFavouriteClick(meal)
+                            } ,
+                            onBackClick ={
+                                navController.previousBackStackEntry?.savedStateHandle?.remove<Meal>("meal")
+                                navController.popBackStack()
                             }
                         )
                     }
@@ -152,7 +160,9 @@ fun AppNavigation() {
                     state = state,
                     onMealClick = { meal ->
                         navController.currentBackStackEntry?.savedStateHandle?.set("meal",meal)
-                        navController.navigate(route = Screen.Details.route)
+                        navController.navigate(route = Screen.Details.route){
+                            launchSingleTop = true
+                        }
                     }
                 )
             }
@@ -186,7 +196,9 @@ fun AppNavigation() {
                     LaunchedEffect(meal) {
                         meal?.let {
                             navController.currentBackStackEntry?.savedStateHandle?.set("meal", it)
-                            navController.navigate(route = Screen.Details.route)
+                            navController.navigate(route = Screen.Details.route) {
+                                launchSingleTop = true
+                            }
                             viewModel.resetMealState()
                         }
                     }
@@ -199,7 +211,9 @@ fun AppNavigation() {
                     searchViewModel = searchViewModel,
                     onMealClick = {meal->
                         navController.currentBackStackEntry?.savedStateHandle?.set("meal",meal)
-                        navController.navigate(route = Screen.Details.route)
+                        navController.navigate(route = Screen.Details.route){
+                            launchSingleTop = true
+                        }
                     }
                 )
             }

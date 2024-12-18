@@ -69,13 +69,14 @@ fun SearchBar(
         IconButton(
             onClick = onSearch,
             modifier = Modifier
-                .size(50.dp)
+                .size(60.dp)
                 .padding(start = 5.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.search),
                 contentDescription = "Search Icon",
-                tint = colorResource(id = R.color.g_black)
+                tint = colorResource(id = R.color.g_black) ,
+                modifier = Modifier.size(40.dp)
             )
         }
     }
